@@ -1,0 +1,59 @@
+steps={[
+            {
+              id: '1',
+              message: 'Olá! Eu sou a Vivi. Atendente Virtual da Previ.',
+              trigger: '2',
+            },
+            {
+              id: '2',
+              message: 'Estou aqui para ajudar no processo de baixa de hipotéca.',
+              trigger: '3',
+            },
+            {
+              id: '3',
+              message: 'Por favor informe matrícula e senha',
+              trigger: '4',
+            },
+            {
+              id: '4',
+              user: true,
+              validator: (value) => {
+                if (isNaN(value)) {
+                  return 'a matrícula é composta somente por números';
+                }
+                return true;
+              },
+              trigger: '5',
+            },
+            {  
+              id: '5',
+              options: [
+                { value: 1, label: 'Solicitar Baixa', trigger: '6' },
+                { value: 2, label: 'Esclarecer Dúvidas', trigger: '6' },
+                { value: 3, label: 'Informar Pendências', trigger: '6' },
+              ],
+            },
+            {
+              id: '6',
+              message: 'Hi {previousValue}, nice to meet you!',
+              end: true,
+            },
+          ]}
+
+
+
+
+          steps={[
+            {
+              id: 'chatbot',
+              message: 'Watson',
+              trigger: 'usuario',
+            },
+            {
+              id: 'usuario',
+              message: 'Usuario',
+              user: true,
+              trigger: 'chatbot',
+            },
+           
+          ]}
